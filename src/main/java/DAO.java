@@ -7,7 +7,8 @@ import java.util.ArrayList;
 public class DAO {
 
     Connection conn ;
-    Statement stmt  ;
+    Statement stmt;
+    private Person person;
    String sql = "SELECT id, name, soneme, age, book FROM new_table1";
 
 
@@ -20,7 +21,7 @@ public class DAO {
         }
     }
 
-    public void getData(String sql) {
+    public Person getData(String sql) {
 
         try{
             Class.forName("com.mysql.jdbc.Driver");
@@ -31,12 +32,10 @@ public class DAO {
                 //Retrieve by column name
                 int id  = rs.getInt("id");
                 int age = rs.getInt("age");
-                String first = rs.getString("name");
-                String last = rs.getString("soneme");
-                System.out.print("ID: " + id);
-                System.out.print(", Age: " + age);
-                System.out.print(", First: " + first);
-                System.out.println(", Last: " + last);
+                String name = rs.getString("name");
+                String soneme = rs.getString("soneme");
+
+                person = new Person(name, soneme, age);
             }
 
             rs.close();
@@ -63,6 +62,8 @@ public class DAO {
             }//end finally try
         }//end try
         System.out.println("Goodbye!");
+        return person;
     }//end main
+
 }//end FirstExample
 

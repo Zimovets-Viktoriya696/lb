@@ -8,7 +8,8 @@ public class Maine {
 
 
     public static void main(String[] args) {
-
+        Search search = new Search();
+        search.getSerch();
 
     }
 }
